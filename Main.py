@@ -496,5 +496,35 @@ sklearn - ver
 # In[ ]:
 
 
+import math
+
+def calculate_angle(landmark1, landmark2, landmark3):
+    # Check if any of the landmarks are not visible
+    if landmark1.visibility < 0 or landmark2.visibility < 0 or landmark3.visibility < 0:
+        return None
+    
+    # Extract the X, Y, Z coordinates of the landmarks
+    x1, y1, z1 = landmark1.x, landmark1.y, landmark1.z
+    x2, y2, z2 = landmark2.x, landmark2.y, landmark2.z
+    x3, y3, z3 = landmark3.x, landmark3.y, landmark3.z
+    
+    # Calculate the vectors between the landmarks
+    vector1 = (x1 - x2, y1 - y2, z1 - z2)
+    vector2 = (x3 - x2, y3 - y2, z3 - z2)
+    
+    # Calculate the dot product of the vectors
+    dot_product = sum(p*q for p, q in zip(vector1, vector2))
+    
+    # Calculate the magnitudes of the vectors
+    magnitude1 = math.sqrt(sum(p*p for p in vector1))
+    magnitude2 = math.sqrt(sum(p*p for p in vector2))
+    
+    # Calculate the angle in radians
+    angle_rad = math.acos(dot_product / (magnitude1 * magnitude2))
+    
+    # Convert the angle to degrees
+    angle_deg = math.degrees(angle_rad)
+    
+    return angle_deg
 
 
