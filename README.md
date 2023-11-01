@@ -1,4 +1,4 @@
-# ShotPut
+# ThrowBuddy 
 AI based Shotput Pose Detection App
 Can identify whether the throw is a glide, spin, stand etc
 Compares it to the other olympic level throws, and offers feedback and ways to help improve the throw
